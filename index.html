@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Regional 16 Kids</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Fredoka', sans-serif; }
+    html { scroll-behavior: smooth; }
+    .animate-marquee {
+      display: inline-block;
+      animation: marquee 40s linear infinite;
+    }
+    @keyframes marquee {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-b from-sky-100 to-indigo-200 text-gray-800" x-data="{ showWelcome: true, menuOpen: false }">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full bg-white shadow-md z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <span class="text-xl font-bold text-indigo-700">Regional 16 Kids</span>
+      <button class="md:hidden text-indigo-700" @click="menuOpen = !menuOpen">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+      <ul :class="menuOpen ? 'block' : 'hidden'" class="md:flex space-x-6 text-sm md:space-x-6 md:block md:ml-8">
+        <li><a href="#about" class="hover:text-indigo-600">Quem Somos</a></li>
+        <li><a href="#igrejas" class="hover:text-indigo-600">Nossas Igrejas</a></li>
+        <li><a href="#ebf" class="hover:text-indigo-600">EBF</a></li>
+        <li><a href="#momentos" class="hover:text-indigo-600">Momentos</a></li>
+        <li><a href="#equipe" class="hover:text-indigo-600">Equipe</a></li>
+        <li><a href="#contato" class="hover:text-indigo-600">Contato</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="pt-24"></div>
+
+  <!-- Boas-Vindas -->
+  <div x-show="showWelcome" class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+    <div class="bg-pink-300 text-center p-10 rounded-3xl shadow-2xl animate-bounce border-4 border-white max-w-2xl mx-auto">
+      <h1 class="text-4xl font-bold text-white"> Bem-vindo ao mundo da <br><span class="text-yellow-300">Regional 16 Kids!</span></h1>
+      <p class="text-xl mt-4 text-indigo-900">Onde cada criança descobre o amor de Deus de maneira alegre, divertida e especial!🙏</p>
+      <p class="text-xl mt-4 text-indigo-900">Está chegando nossa <strong>EBF</strong> SE PREPARE!!!!!!!!!!</p>
+      <button @click="showWelcome = false" class="mt-8 bg-white text-indigo-700 px-8 py-3 rounded-full shadow-lg hover:scale-105 transition font-bold">Conhecer Regional 16 Kids</button>
+    </div>
+  </div>
+
+  <!-- Seção Quem Somos -->
+  <section id="about" class="py-20 px-6 bg-white text-center">
+    <h2 class="text-4xl font-bold text-indigo-700">Quem somos?</h2>
+    <p class="mt-4 max-w-3xl mx-auto text-lg leading-relaxed">
+      Era uma vez um lugar muito especial chamado Regional 16 Kids... 🌟<br>
+      Ali, espalhadas por 17 igrejinhas cheias de vida, moram crianças felizes que crescem na graça e no amor de Jesus, guiadas por professoras dedicadas e carinhosas.<br> 
+      Em nosso reino encantado, brincadeiras se tornam momentos inesquecíveis, histórias da Bíblia ganham vida, louvores enchem nossos corações de alegria, e amizades são cultivadas para toda a vida! 🙌<br>
+      Aqui na Regional 16 Kids, acreditamos na promessa de Deus:
+      "Ensina a criança no caminho em que deve andar, e ainda quando for velho não se desviará dele." <span class="text-yellow-300">(Provérbios 22:6)</span>
+    </p>
+  </section>
+
+  <!-- Carrossel Igrejas -->
+  <section id="igrejas" class="py-16 bg-gradient-to-r from-rose-200 to-yellow-100 overflow-hidden relative">
+    <div class="text-center max-w-5xl mx-auto">
+      <h2 class="text-4xl font-bold text-indigo-800 mb-6">Nossas Igrejas - Nosso Exército de Amor 💒</h2>
+      <p class="mb-8 text-lg">Cada igreja é uma estrela que brilha no céu da Regional 16. Conheça nossa familia em cristo:</p>
+      <div class="flex gap-12 whitespace-nowrap animate-marquee font-bold text-pink-700 text-xl">
+        <template x-for="n in 2">
+          <div class="flex gap-12">
+            <template x-for="igreja in ['Ad São José', 'Ad Bonfim', 'Ad alto do vale', 'Ad Antônio Carlos', 'Ad balneário central', 'Ad balneário II', 'Ad barravento', 'Ad Gentil Meirelles', 'Ad Nerópolis', 'Ad setor sul', 'Ad panorama', 'Ad perim', 'Ad recanto do bosque', 'Ad Itanhangá', 'Ad santa Helena', 'Ad Urias I', 'Ad Urias II']">
+              <span class="mx-6" x-text="igreja"></span>
+            </template>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+  <!-- Seção EBF -->
+  <section id="ebf" 
+         class="py-24 px-6 bg-gradient-to-b from-pink-100 to-yellow-100 text-center relative overflow-hidden" 
+         x-data="countdownTimer('2025-06-28T16:30:00')" 
+         x-init="init()">
+         
+  <div class="absolute top-0 left-0 right-0 h-1 bg-pink-400 animate-pulse"></div>
+
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-600 to-yellow-500 animate-fade-in-up mb-4">
+      ✨ EBF - Escola Bíblica de Férias ✨
+    </h2>
+    
+    <p class="text-xl text-indigo-800 max-w-3xl mx-auto mb-6 animate-fade-in-up delay-200">
+      Onde a fé encontra a fantasia! Dias cheios de aventuras, criatividade, louvor e amor. A EBF é o coração pulsante das férias das nossas crianças! 💖
+    </p>
+    
+    <div class="text-2xl font-bold text-pink-700 mb-10 animate-fade-in-up delay-300">
+      Começa em: <span x-text="countdown"></span>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 animate-fade-in-up delay-300">
+      <img src="https://img.ge/ib/CeJAWIjCCNkfbBo_1743280139.jpg" alt="EBF 1" class="rounded-3xl shadow-xl hover:scale-105 transition duration-300 border-4 border-pink-300">
+      <img src="https://img.ge/ib/YTiok0IY6muPEIO_1743280139.jpg" alt="EBF 2" class="rounded-3xl shadow-xl hover:scale-105 transition duration-300 border-4 border-yellow-300">
+      <img src="https://img.ge/ib/MGK1JIUsbnJFONT_1743280139.jpg" alt="EBF 3" class="rounded-3xl shadow-xl hover:scale-105 transition duration-300 border-4 border-indigo-300">
+    </div>
+
+    <div class="mt-12">
+      <a href="#contato" 
+         class="inline-block bg-pink-600 hover:bg-pink-700 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300">
+         Quero participar da próxima EBF!
+      </a>
+    </div>
+  </div>
+
+  <div class="absolute bottom-0 left-0 right-0 h-1 bg-yellow-400 animate-pulse"></div>
+</section>
+
+  <!-- Momentos -->
+  <section id="momentos" class="py-20 px-6 bg-white text-center">
+    <h2 class="text-4xl font-bold text-indigo-700 mb-10">🌟 Momentos que Já Vivemos 🌟</h2>
+    <p class="mb-8 text-lg max-w-3xl mx-auto">Cada sorriso, oração e canção marcou nossa caminhada. Veja alguns registros dos nossos dias especiais:</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+      <img src="https://img.ge/ib/tlGyhFxIOPJAPaJ_1743340986.jpg" loading="lazy" class="rounded-xl shadow-md hover:scale-105 transition" alt="Momento 1">
+      <img src="https://img.ge/ib/gqf4zhBNKSBgS6y_1743340986.jpg" loading="lazy" class="rounded-xl shadow-md hover:scale-105 transition" alt="Momento 4">
+      <img src="https://img.ge/ib/LzKyseBj1sDS3M1_1743340986.jpg" loading="lazy" class="rounded-xl shadow-md hover:scale-105 transition" alt="Momento 3">
+      <img src="https://img.ge/ib/9ucw0e1Tu87MDoU_1743340985.jpg" loading="lazy" class="rounded-xl shadow-md hover:scale-105 transition" alt="Momento 2">
+      <img src="https://img.ge/ib/awpEC8e4pmpEqTe_1743340987.jpg" loading="lazy" class="rounded-xl shadow-md hover:scale-105 transition" alt="Momento 5">
+      <img src="https://img.ge/ib/Lo1T6g6tnwBkGQF_1743341076.jpg" loading="lazy" class="rounded-xl shadow-md hover:scale-105 transition" alt="Momento 6">
+    </div>
+  </section>
+
+  <!-- Equipe -->
+  <section id="equipe" class="py-20 px-6 bg-gradient-to-b from-yellow-50 to-white text-center">
+    <h2 class="text-4xl font-bold text-indigo-800 mb-10">Nossa Equipe de Heróis 💪</h2>
+    <p class="mb-10 text-lg max-w-2xl mx-auto">Conheça os guardiões do sorriso infantil, que fazem tudo com amor e dedicação!</p>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+      <div class="bg-rose-100 p-6 rounded-xl shadow-xl">
+        <h3 class="text-2xl font-bold text-indigo-700">Tio Vander Neres</h3>
+        <p>🌟 Coordenador Geral</p>
+      </div>
+      <div class="bg-indigo-100 p-6 rounded-xl shadow-xl">
+        <h3 class="text-2xl font-bold text-indigo-700">Tia Miriã</h3>
+        <p>🎪 Lider Regional Kids</p>
+      </div>
+      <div class="bg-yellow-100 p-6 rounded-xl shadow-xl">
+        <h3 class="text-2xl font-bold text-indigo-700">Tia Vil</h3>
+        <p>📣 Vice-Lider Regional Kids</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Igreja Matriz -->
+  <section class="py-20 bg-indigo-100 text-center">
+    <h2 class="text-4xl font-bold text-indigo-800 mb-4">🌟 Igreja Matriz</h2>
+    <p class="text-xl text-indigo-700">No coração da nossa missão está a <strong>Assembleia de Deus São José - Campo de Campinas, Goiânia</strong>. <br>
+      Onde brotam as sementes do cuidado com nossas crianças!</p>
+  </section>
+
+  <!-- Contato -->
+  <section id="contato" class="bg-white py-20 px-6">
+    <h2 class="text-4xl font-bold text-center text-indigo-700 mb-8">📬 Fale Conosco</h2>
+    <div class="max-w-3xl mx-auto">
+      <form class="space-y-6">
+        <input type="text" placeholder="Nome" required autocomplete="name" class="w-full p-3 rounded border border-gray-300" />
+        <input type="email" placeholder="Email" required autocomplete="email" class="w-full p-3 rounded border border-gray-300" />
+        <textarea placeholder="Mensagem" required class="w-full p-3 rounded border border-gray-300"></textarea>
+        <button type="submit" class="w-full bg-indigo-600 text-white p-3 rounded hover:bg-indigo-700">Enviar</button>
+      </form>
+      <div class="mt-10 text-center">
+        <p><strong>Contato direto:</strong></p>
+        <p>Tia Miriã: (62) 98610-9648</p>
+        <p>Email: regional16kids@gmail.com</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Rodapé -->
+  <footer class="bg-indigo-800 text-white text-center py-6">
+    <p>&copy; 2025 Regional 16 Kids. Todos os direitos reservados.</p>
+  </footer>
+
+
+  <script>
+    function countdownTimer(targetDateStr) {
+      const targetDate = new Date(targetDateStr);
+      return {
+        countdown: '00d 00h 00m 00s',
+        interval: null,
+        init() {
+          this.updateCountdown();
+          this.interval = setInterval(() => this.updateCountdown(), 1000);
+        },
+        updateCountdown() {
+          const now = new Date();
+          const diff = targetDate - now;
+          if (diff <= 0) {
+            this.countdown = '🎉 Já começou!';
+            clearInterval(this.interval);
+            return;
+          }
+          const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+          const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+          const minutes = Math.floor((diff / (1000 * 60)) % 60);
+          const seconds = Math.floor((diff / 1000) % 60);
+          this.countdown = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+        },
+        destroy() {
+          clearInterval(this.interval);
+        }
+      }
+    }
+  </script>
+</body>
+</html>
